@@ -1,0 +1,51 @@
+// Footer SCSS Styles
+
+footer {
+	background-color: #333; // Dark background color
+	color: #fff; // White text color
+	padding: 20px; // Padding around the footer
+	text-align: center; // Center-align text
+
+	// Responsive Design
+	@media (max-width: 768px) {
+		padding: 15px; // Adjust padding on smaller screens
+	}
+
+	// Links
+	a {
+		color: #fff; // White text color for links
+		text-decoration: none; // Remove underline from links
+
+		&:hover {
+			color: #ddd; // Light gray color on hover
+			text-decoration: underline; // Underline on hover
+		}
+	}
+
+	// Additional Elements
+	.footer-content {
+		max-width: 1200px; // Max width for the content
+		margin: 0 auto; // Center the content horizontally
+	}
+
+	.footer-logo {
+		font-size: 1.5rem; // Larger font size for logo
+		margin-bottom: 10px; // Space below the logo
+	}
+
+	.footer-links {
+		display: flex; // Flexbox for layout
+		justify-content: center; // Center-align links
+		gap: 20px; // Space between links
+
+		@media (max-width: 768px) {
+			flex-direction: column; // Stack links vertically on small screens
+			gap: 10px; // Adjust space between links
+		}
+	}
+
+	.footer-text {
+		font-size: 0.875rem; // Smaller font size for text
+		margin-top: 20px; // Space above the text
+	}
+}
