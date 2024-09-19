@@ -1,68 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<title>Test</title>
-		<link rel="stylesheet" href="../styles/form.scss" />
-		<link rel="stylesheet" href="../styles/base.scss" />
-		<link rel="stylesheet" href="../styles/header.scss" />
-		<link rel="stylesheet" href="../styles/resets.scss" />
-		<link rel="stylesheet" href="../styles/footer.scss" />
-		<link rel="stylesheet" href="../styles/main.scss" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sentiment Analysis</title>
+		<link href="styles.css" rel="stylesheet" />
+		<script defer src="bundle.js"></script>
 	</head>
-
 	<body>
-		<header>
-			<div class="">Logo</div>
-			<div class="">navigation</div>
-		</header>
+		<h1>Sentiment Analysis Form</h1>
+		<form id="submit-form">
+			<label for="name">Enter Text for Analysis:</label>
+			<input type="text" id="name" name="name" required />
+			<button type="submit">Analyze</button>
+		</form>
 
-		<main>
-			<section>
-				<form class="" onsubmit="return handleSubmit(event)">
-					<input
-						id="name"
-						type="text"
-						name="input"
-						value=""
-						onblur="onBlur()"
-						placeholder="Name" />
-					<input
-						type="submit"
-						name=""
-						value="submit"
-						onclick="return handleSubmit(event)"
-						onsubmit="return handleSubmit(event)" />
-				</form>
-			</section>
+		<div id="results">
+			<p id="polarity"></p>
+			<p id="subjectivity"></p>
+			<p id="text-snippet"></p>
+		</div>
 
-			<section>
-				<strong>Form Results:</strong>
-				<div id="results"></div>
-			</section>
-		</main>
+		<p id="error" style="color: red"></p>
 
-		<footer>
-			<p>This is a footer</p>
-		</footer>
+		<script src="bundle.js"></script>
 	</body>
 </html>
-
-<script>
-	if ("serviceWorker" in navigator) {
-		window.addEventListener("load", () => {
-			const swPath = "/service-worker.js"; // Path to your service worker
-			navigator.serviceWorker
-				.register(swPath)
-				.then((registration) => {
-					console.log(
-						"ServiceWorker registration successful with scope: ",
-						registration.scope
-					);
-				})
-				.catch((error) => {
-					console.log("ServiceWorker registration failed: ", error);
-				});
-		});
-	}
-</script>

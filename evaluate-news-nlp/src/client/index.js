@@ -1,17 +1,51 @@
-const dotenv = require('dotenv');
-dotenv.config();
+document.addEventListener('DOMContentLoaded', () => {
+    // Attach event listener to the form
+    document.getElementById('submit-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-import './styles/resets.scss';
-import './styles/base.scss';
-import './styles/footer.scss';
-import './styles/form.scss';
-import './styles/header.scss';
+        // Get the text input value
+        const textInput = document.getElementById('name').value;
 
-var aylien = require("aylien_textapi");
+        try {
+            // Send the text input to the server
+            const response = await fetch('http://localhost:3000/analyze', { // Use the appropriate endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: textInput }),
+            });
 
-var textapi = new aylien({
-    application_id: "your-api-id",
-    application_key: "your-key"
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            // Parse the response data
+            const data = await response.json();
+
+            // Display the results
+            displayResults(data);
+        } catch (error) {
+            console.error('Error:', error);
+            displayError('An error occurred while analyzing the text.');
+        }
+    });
 });
+
+// Function to display results
+function displayResults(data) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = `
+        <p>Polarity: ${data.polarity}</p>
+        <p>Subjectivity: ${data.subjectivity}</p>
+        <p>Text snippet: ${data.text}</p>
+    `;
+}
+
+// Function to display errors
+function displayError(message) {
+    const errorContainer = document.getElementById('error');
+    errorContainer.textContent = message;
+}
 
 

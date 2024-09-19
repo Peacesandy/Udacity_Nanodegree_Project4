@@ -34,8 +34,14 @@ app.get('/', (req, res) => {
 
 // Route to call the MeaningCloud API
 app.post('/api/data', async (req, res) => {
+    const { text } = req.body;
+
+    if (!text) {
+        return res.status(400).json({ error: 'Text input is required' });
+    }
+
     try {
-        const { text } = req.body;
+        const apiKey = process.env.API_KEY;
 
         const response = await axios.get('https://api.meaningcloud.com/sentiment-2.1', {
             params: {
@@ -51,6 +57,7 @@ app.post('/api/data', async (req, res) => {
         res.status(500).json({ error: 'API call failed' });
     }
 });
+
 
 // Define a port
 const PORT = process.env.PORT || 3000;
