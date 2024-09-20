@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // Attach event listener to the form
     document.getElementById('submit-form').addEventListener('submit', async function (e) {
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Send the text input to the server
-            const response = await fetch('http://localhost:3000/analyze', { // Use the appropriate endpoint
+            const response = await fetch('http://localhost:8080/data', { // Use the appropriate endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
